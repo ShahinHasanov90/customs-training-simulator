@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a1b2c3d4e5f6789aa00000000000001, type: 3}
+  m_Name: Scenario_Misclassification
+  m_EditorClassIdentifier:
+  ScenarioId: misclassification-electronics
+  DisplayName: Electronics Declared as Plastic Parts
+  Briefing: |
+    Paperwork lists the cargo under HS 3926 (other plastic articles) at a
+    low duty rate. A partial visual through the door hatch shows retail
+    packaging consistent with consumer electronics.
+  Steps:
+  - {fileID: 11400002}
+  - {fileID: 11400003}
+  - {fileID: 11400004}
+  - {fileID: 11400005}
+  ChecklistItems:
+  - Scan paperwork
+  - Visual inspection of cargo
+  - Compare HS chapter to goods
+  - Record decision
+  ScoringRules: {fileID: 11400100, guid: 0a1b2c3d4e5f6789aa00000000000010, type: 2}
+  CorrectDecision: 2
+  SealsExpectedToBreak: 1
+  TargetSeconds: 180
+  ExpectedFraudPatterns:
+  - 2
+--- !u!114 &11400002
+MonoBehaviour:
+  m_Name: Step_Briefing
+  m_Script: {fileID: 11500000, guid: 0a1b2c3d4e5f6789aa00000000000002, type: 3}
+  Kind: 1
+  Reference: briefing
+  DisplayText: Read the shift brief.
+  HoldSeconds: 2
+--- !u!114 &11400003
+MonoBehaviour:
+  m_Name: Step_SpawnContainer
+  m_Script: {fileID: 11500000, guid: 0a1b2c3d4e5f6789aa00000000000002, type: 3}
+  Kind: 0
+  Reference: CONT-MC-002
+  DisplayText: Container arriving on Lane 1.
+  HoldSeconds: 1
+--- !u!114 &11400004
+MonoBehaviour:
+  m_Name: Step_ChecklistHsCompare
+  m_Script: {fileID: 11500000, guid: 0a1b2c3d4e5f6789aa00000000000002, type: 3}
+  Kind: 3
+  Reference: Compare HS chapter to goods
+  DisplayText: Finish the HS comparison.
+  HoldSeconds: 0
+--- !u!114 &11400005
+MonoBehaviour:
+  m_Name: Step_AwaitDecision
+  m_Script: {fileID: 11500000, guid: 0a1b2c3d4e5f6789aa00000000000002, type: 3}
+  Kind: 2
+  Reference: decision
+  DisplayText: Submit your decision.
+  HoldSeconds: 0
